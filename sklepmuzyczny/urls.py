@@ -12,6 +12,6 @@ urlpatterns = [
         form_class=UserCreationForm,
         success_url='/'
     )),
-   url(r'^accounts/logout/$', logout),
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout'),
     url(r'^discs/(?P<disc_id>[0-9]+)/$', views.detail, name='disc-detail'),
 ]

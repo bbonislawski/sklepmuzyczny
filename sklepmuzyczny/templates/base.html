@@ -26,10 +26,9 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Link</a></li>
-              {% if user.is_authenticated %}
-        <li><a href="/accounts/logout">Logout</a></li>
-
-        <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+      {% if user.is_authenticated %}
+        <li><a href="{% url "django.contrib.auth.views.logout" %}?next=/">Logout</a></li>
+        <li> Hello {{ user.username }} </li> 
       {% else %}
         <li><a href="/accounts/login">Login</a></li>
         <li><a href="/accounts/register">Register</a></li>
