@@ -1,1 +1,46 @@
-Hello
+{% extends 'sklepmuzyczny/base.html' %} 
+
+{% block content %}
+<h2>Shoop</h2>
+<p>CDs you can buy!</p>            
+<table class="table table-striped">
+<thead>
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Genre</th>
+    <th>Discs Available</th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+
+	{% for disc in discs %}
+		<tr>
+			<td>{{ disc.title}}</td>
+			<td>{{ disc.author}}</td>
+			<td>{{ disc.genre}}</td>
+			<td>{{ disc.available_count}}</td>
+			<td> <button type="button" class="btn btn-Primary">Buy a CD</button> </td>
+		</tr>
+	{% endfor %}
+
+  <tr>
+    <td>Mary</td>
+    <td>Moe</td>
+    <td>mary@example.com</td>
+    <td>3</td>
+	<td> <button type="button" class="btn btn-Primary">Buy a CD</button> </td>
+
+  </tr>
+  <tr>
+    <td>July</td>
+    <td>Dooley</td>
+    <td>mary@example.com</td>
+    <td>5</td>
+	<td> <button type="button" class="btn btn-Primary">Buy a CD</button> </td>
+  
+  </tr>
+</tbody>
+</table>
+{% endblock %}
