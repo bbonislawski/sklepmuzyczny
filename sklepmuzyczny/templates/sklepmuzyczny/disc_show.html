@@ -1,8 +1,8 @@
 {% extends 'base.html' %} 
 
 {% block content %}
-<h2>Shoop</h2>
-<p>CDs you can buy!</p>            
+<h2>Show Page</h2>
+<p>Detailed info about disc</p>            
 <table class="table table-striped">
 <thead>
   <tr>
@@ -15,7 +15,6 @@
 </thead>
 <tbody>
 
-	{% for disc in discs %}
 		<tr>
 			<td>{{ disc.title}}</td>
 			<td>{{ disc.author}}</td>
@@ -24,7 +23,6 @@
 
 			<td> <a href={% url 'disc-detail' disc.id %} class="btn btn-primary" role="button">Buy a CD</a> </td>
 		</tr>
-	{% endfor %}
 
 </tbody>
 </table>

@@ -18,7 +18,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <a class="navbar-brand" href="/">Sklep Muzyczny</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -26,6 +26,15 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
         <li><a href="#">Link</a></li>
+              {% if user.is_authenticated %}
+        <li><a href="/accounts/logout">Logout</a></li>
+
+        <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+      {% else %}
+        <li><a href="/accounts/login">Login</a></li>
+        <li><a href="/accounts/register">Register</a></li>
+
+      {% endif %}
 
       </ul>
       </form>
@@ -34,6 +43,11 @@
   </div><!-- /.container-fluid -->
 </nav>
     <div class="content container">
+      {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+      {% else %}
+        <p>Welcome, new user. Please log in.</p>
+      {% endif %}
         <div class="row">
             {% block content %}
             {% endblock %}
