@@ -14,4 +14,6 @@ urlpatterns = [
     )),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout'),
     url(r'^discs/(?P<disc_id>[0-9]+)/$', views.detail, name='disc-detail'),
+    url(r'^discs/(?P<disc_id>[0-9]+)/add_to_cart/$', views.add_to_cart, name='disc-add'),
+    url(r'^your_cart/$', views.cart_detail, name='cart-detail'),
 ]

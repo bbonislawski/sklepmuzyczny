@@ -5,6 +5,7 @@ from django.contrib import auth
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 
 def index(request):
@@ -14,6 +15,18 @@ def index(request):
 def detail(request, disc_id):
 	disc = Disc.objects.get(pk=disc_id)
 	return render(request, 'sklepmuzyczny/disc_show.html', {'disc': disc})
+
+def cart_detail(request):
+    cart = request.user.cart_set.last()
+    return render(request, 'sklepmuzyczny/cart_show.html', {'cart': cart, 'discs': cart.disc_set.all()})
+
+def add_to_cart(request, disc_id):
+    if request.method == 'POST':
+        disc = Disc.objects.get(pk=disc_id)
+        cart = Cart.objects.get_or_create(user=request.user)[0]
+        cart.disc_set.add(disc)
+        messages.success(request, 'Disc added to cart succesfully.')
+        return render(request, 'sklepmuzyczny/cart_show.html', {'cart': cart, 'discs': cart.disc_set.all()})
 
 def register(request):
     if request.method == 'POST':

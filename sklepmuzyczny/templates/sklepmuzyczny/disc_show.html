@@ -1,29 +1,15 @@
 {% extends 'base.html' %} 
 
 {% block content %}
+
 <h2>Show Page</h2>
-<p>Detailed info about disc</p>            
-<table class="table table-striped">
-<thead>
-  <tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Genre</th>
-    <th>Discs Available</th>
-    <th></th>
-  </tr>
-</thead>
-<tbody>
+<h3>Detailed info about disc</h3>            
+<p>Title: {{ disc.title}}</p>
+<p>Author: {{ disc.author}}</p>
+<p>Genre: {{ disc.genre}}</p>
+<p>Discs Available: {{ disc.available_count}} </p>
+ <form action={% url 'disc-add' disc.id %} method='post'>{% csrf_token %}
+<p><button class="btn btn-primary">Add to cart</button></p>
+</form>
 
-		<tr>
-			<td>{{ disc.title}}</td>
-			<td>{{ disc.author}}</td>
-			<td>{{ disc.genre}}</td>
-			<td>{{ disc.available_count}}</td>
-
-			<td> <a href={% url 'disc-detail' disc.id %} class="btn btn-primary" role="button">Buy a CD</a> </td>
-		</tr>
-
-</tbody>
-</table>
 {% endblock %}

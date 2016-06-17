@@ -1,15 +1,15 @@
 {% extends 'base.html' %} 
 
 {% block content %}
-<h2>Shoop</h2>
-<p>CDs you can buy!</p>            
+<h2> Twoj koszyk </h2>
+<h3>Detailed info about disc</h3>         
+
 <table class="table table-striped">
 <thead>
   <tr>
     <th>Title</th>
     <th>Author</th>
     <th>Genre</th>
-    <th>Discs Available</th>
     <th></th>
   </tr>
 </thead>
@@ -20,8 +20,6 @@
 			<td>{{ disc.title}}</td>
 			<td>{{ disc.author}}</td>
 			<td>{{ disc.genre}}</td>
-			<td>{{ disc.available_count}}</td>
-
 			<td> <a href={% url 'disc-detail' disc.id %} class="btn btn-primary" role="button">Show Details</a> </td>
 		</tr>
 	{% endfor %}
