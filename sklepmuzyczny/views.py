@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from .models import Disc
-from .models import Cart
+from .models import Disc, Cart, CartEntry
 from django.contrib import auth
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -18,15 +17,21 @@ def detail(request, disc_id):
 
 def cart_detail(request):
     cart = request.user.cart_set.last()
-    return render(request, 'sklepmuzyczny/cart_show.html', {'cart': cart, 'discs': cart.disc_set.all()})
+    return render(request, 'sklepmuzyczny/cart_show.html', {'cart': cart, 'cart_entries': cart.cartentry_set.all()})
+
+def remove_entry(request, entry_id):
+    CartEntry.objects.get(pk=entry_id).delete()
+    cart = request.user.cart_set.last()
+    messages.success(request, 'Disc removed from cart succesfully.')
+    return render(request, 'sklepmuzyczny/cart_show.html', {'cart': cart, 'cart_entries': cart.cartentry_set.all()})
 
 def add_to_cart(request, disc_id):
     if request.method == 'POST':
         disc = Disc.objects.get(pk=disc_id)
         cart = Cart.objects.get_or_create(user=request.user)[0]
-        cart.disc_set.add(disc)
+        entry = CartEntry.objects.create(disc=disc, cart=cart, count=1)
         messages.success(request, 'Disc added to cart succesfully.')
-        return render(request, 'sklepmuzyczny/cart_show.html', {'cart': cart, 'discs': cart.disc_set.all()})
+        return render(request, 'sklepmuzyczny/cart_show.html', {'cart': cart, 'cart_entries': cart.cartentry_set.all()})
 
 def register(request):
     if request.method == 'POST':

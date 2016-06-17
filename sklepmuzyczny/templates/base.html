@@ -26,7 +26,7 @@
         <li><a href="#">Link</a></li>
         <li><a href="#">Link</a></li>
       {% if user.is_authenticated %}
-        <li><a href={% url 'cart-detail' %}>You have {{ user.cart_set.last.disc_set.all.count }} discs in cart.</a></li>
+        <li><a href={% url 'cart-detail' %}>You have {{ user.cart_set.last.cartentry_set.all.count }} items in cart.</a></li>
       {% endif %}
       
       {% if user.is_authenticated %}

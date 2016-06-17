@@ -11,16 +11,24 @@
     <th>Author</th>
     <th>Genre</th>
     <th></th>
+    <th></th>
   </tr>
 </thead>
 <tbody>
 
-	{% for disc in discs %}
+	{% for entry in cart_entries %}
 		<tr>
-			<td>{{ disc.title}}</td>
-			<td>{{ disc.author}}</td>
-			<td>{{ disc.genre}}</td>
-			<td> <a href={% url 'disc-detail' disc.id %} class="btn btn-primary" role="button">Show Details</a> </td>
+			<td>{{ entry.disc.title}}</td>
+			<td>{{ entry.disc.author}}</td>
+			<td>{{ entry.disc.genre}}</td>
+			<td> <a href={% url 'disc-detail' entry.disc.id %} class="btn btn-primary" role="button">Show Details</a> </td>
+			<td> 
+			 <form action={% url 'remove-entry' entry.id %} method='delete'>{% csrf_token %}
+<button class="btn btn-primary">Remove from cart</button>
+</td>
+</form>
+
+
 		</tr>
 	{% endfor %}
 

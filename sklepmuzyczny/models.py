@@ -23,3 +23,12 @@ class Disc(models.Model):
     
     def __str__(self):
         return self.title
+
+class CartEntry(models.Model):
+    cart = models.ForeignKey(Cart)
+    disc = models.ForeignKey(Disc)
+    count = models.IntegerField()
+
+    created_date = models.DateTimeField(
+            default=timezone.now)
+    
