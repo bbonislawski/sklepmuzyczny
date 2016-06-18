@@ -1,0 +1,100 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<h2> Twoje zamowienie </h2>
+<table class="table table-striped">
+<thead>
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Genre</th>
+    <th>Count</th>
+  </tr>
+</thead>
+<tbody>
+
+	{% for entry in cart_entries %}
+		<tr>
+			<td>{{ entry.disc.title}}</td>
+			<td>{{ entry.disc.author}}</td>
+			<td>{{ entry.disc.genre}}</td>
+			<td>{{ entry.count}}</td>
+</form>
+		</tr>
+	{% endfor %}
+
+</tbody>
+</table>
+ <form action={% url 'create-order'  %} class='form-horizontal' method='post'>{% csrf_token %}
+
+<fieldset>
+
+<!-- Form Name -->
+<legend>Dane do wysylki</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Imie</label>  
+  <div class="col-md-4">
+  <input id="imie" name="imie" placeholder="Imie" class="form-control input-md" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="nazwisko">Nazwisko</label>  
+  <div class="col-md-4">
+  <input id="nazwisko" name="nazwisko" placeholder="Nazwisko" class="form-control input-md" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Miasto</label>  
+  <div class="col-md-4">
+  <input id="miasto" name="miasto" placeholder="" class="form-control input-md" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Ulica</label>  
+  <div class="col-md-4">
+  <input id="ulica" name="ulica" placeholder="Ulica" class="form-control input-md" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Kod pocztowy</label>  
+  <div class="col-md-4">
+  <input id="kodpocztowy" name="kodpocztowy" placeholder="" class="form-control input-md" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="telefon">Telefon</label>  
+  <div class="col-md-4">
+  <input id="telefon" name="telefon" placeholder="" class="form-control input-md" type="text">
+    
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="singlebutton"> </label>
+  <div class="col-md-4">
+    <button class="btn btn-primary">Zloz zamowienie</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+{% endblock %}

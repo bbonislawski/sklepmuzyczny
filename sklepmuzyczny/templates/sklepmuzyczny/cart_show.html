@@ -3,13 +3,15 @@
 {% block content %}
 <h2> Twoj koszyk </h2>
 <h3>Detailed info about disc</h3>         
-
+<p><a href={% url 'create-order' %} class="btn btn-primary" role="button">Create order</a> </p>
 <table class="table table-striped">
 <thead>
   <tr>
     <th>Title</th>
     <th>Author</th>
     <th>Genre</th>
+    <th>Price</th>
+    <th>Count</th>
     <th></th>
     <th></th>
   </tr>
@@ -21,6 +23,8 @@
 			<td>{{ entry.disc.title}}</td>
 			<td>{{ entry.disc.author}}</td>
 			<td>{{ entry.disc.genre}}</td>
+			<td>{{ entry.disc.price}}</td>
+			<td>{{ entry.count}}</td>
 			<td> <a href={% url 'disc-detail' entry.disc.id %} class="btn btn-primary" role="button">Show Details</a> </td>
 			<td> 
 			 <form action={% url 'remove-entry' entry.id %} method='delete'>{% csrf_token %}

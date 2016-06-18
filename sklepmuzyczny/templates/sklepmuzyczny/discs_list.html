@@ -9,6 +9,7 @@
     <th>Title</th>
     <th>Author</th>
     <th>Genre</th>
+    <th>Price</th>
     <th>Discs Available</th>
     <th></th>
   </tr>
@@ -20,6 +21,7 @@
 			<td>{{ disc.title}}</td>
 			<td>{{ disc.author}}</td>
 			<td>{{ disc.genre}}</td>
+			<td>{{ disc.price}}</td>
 			<td>{{ disc.available_count}}</td>
 
 			<td> <a href={% url 'disc-detail' disc.id %} class="btn btn-primary" role="button">Show Details</a> </td>

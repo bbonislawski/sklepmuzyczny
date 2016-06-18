@@ -16,5 +16,6 @@ urlpatterns = [
     url(r'^discs/(?P<disc_id>[0-9]+)/$', views.detail, name='disc-detail'),
     url(r'^discs/(?P<disc_id>[0-9]+)/add_to_cart/$', views.add_to_cart, name='disc-add'),
     url(r'^your_cart/$', views.cart_detail, name='cart-detail'),
+    url(r'^create_order/$', views.create_order, name='create-order'),
     url(r'^your_cart/remove_entry/(?P<entry_id>[0-9]+)/$', views.remove_entry, name='remove-entry'),
 ]
