@@ -2,16 +2,15 @@
 
 {% block content %}
 <h2> Twoj koszyk </h2>
-<h3>Detailed info about disc</h3>         
-<p><a href={% url 'create-order' %} class="btn btn-primary" role="button">Create order</a> </p>
+<p><a href={% url 'create-order' %} class="btn btn-primary" role="button">Zloz zamowienie</a> </p>
 <table class="table table-striped">
 <thead>
   <tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Genre</th>
-    <th>Price</th>
-    <th>Count</th>
+    <th>Tytul</th>
+    <th>Artysta</th>
+    <th>Gatunek</th>
+    <th>Cena</th>
+    <th>Ilosc</th>
     <th></th>
     <th></th>
   </tr>
@@ -25,14 +24,12 @@
 			<td>{{ entry.disc.genre}}</td>
 			<td>{{ entry.disc.price}}</td>
 			<td>{{ entry.count}}</td>
-			<td> <a href={% url 'disc-detail' entry.disc.id %} class="btn btn-primary" role="button">Show Details</a> </td>
+			<td> <a href={% url 'disc-detail' entry.disc.id %} class="btn btn-primary" role="button">Szczegoly</a> </td>
 			<td> 
 			 <form action={% url 'remove-entry' entry.id %} method='delete'>{% csrf_token %}
-<button class="btn btn-primary">Remove from cart</button>
+<button class="btn btn-primary">Usun z koszyka</button>
 </td>
 </form>
-
-
 		</tr>
 	{% endfor %}
 

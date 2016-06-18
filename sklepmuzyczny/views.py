@@ -29,21 +29,28 @@ def create_order(request):
         cart = request.user.cart_set.last()
         form = OrderForm(request.POST)
         if form.is_valid():
-            cart.create_order(request.POST)
-            messages.success(request, 'Order succesfully created! Your CDs are on the way to your house!')
-            return redirect('index')
+            if cart.create_order(request.POST):
+                messages.success(request, 'Zamowienie zostalo zlozone!')
+                return redirect('index')
+            else:
+                messages.warning(request, 'Za malo plyt w magazynie.')
+                return redirect('create-order')
+     
+        else:
+            messages.warning(request, 'Blad w formularzu.')
+            return redirect('create-order')
 
 def remove_entry(request, entry_id):
     CartEntry.objects.get(pk=entry_id).delete()
     cart = request.user.cart_set.last()
-    messages.success(request, 'Disc removed from cart succesfully.')
+    messages.success(request, 'Plyta usunieta z koszyka.')
     return render(request, 'sklepmuzyczny/cart_show.html', {'cart': cart, 'cart_entries': cart.cartentry_set.all()})
 
 def add_to_cart(request, disc_id):
     if request.method == 'POST':
         disc = Disc.objects.get(pk=disc_id)
         if disc.available_count < 1:
-            messages.error(request, 'Disc cannot be added to cart.')
+            messages.error(request, 'Brak plyty w magazynie.')
             return render(request, 'sklepmuzyczny/disc_show.html', {'disc': disc})
         else:
             cart = Cart.objects.get_or_create(user=request.user, active=True)[0]
@@ -52,8 +59,8 @@ def add_to_cart(request, disc_id):
             entry[0].save() 
             cart.sum_price += disc.price
             cart.save()
-            messages.success(request, 'Disc added to cart succesfully.')
-            return render(request, 'sklepmuzyczny/cart_show.html', {'cart': cart, 'cart_entries': cart.cartentry_set.all()})
+            messages.success(request, 'Plyta dodana do koszyka.')
+            return redirect('cart-detail')
 
 def register(request):
     if request.method == 'POST':

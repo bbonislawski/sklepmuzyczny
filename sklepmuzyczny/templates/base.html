@@ -23,15 +23,13 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
       {% if user.is_authenticated %}
-        <li><a href={% url 'cart-detail' %}>You have {{ user.cart_set.last.cartentry_set.all.count }} items in cart.</a></li>
+        <li><a href={% url 'cart-detail' %}>Masz {{ user.cart_set.last.cartentry_set.all.count }} plyt w koszyku.</a></li>
       {% endif %}
       
       {% if user.is_authenticated %}
-        <li><a href="{% url "django.contrib.auth.views.logout" %}?next=/">Logout</a></li>
-        <li> Hello {{ user.username }} </li> 
+        <li><a href={% url 'index'> Zalogowany jako {{ user.username }} </a></li>
+        <li><a href="{% url "django.contrib.auth.views.logout" %}?next=/"> Wyloguj</a></li>
       {% else %}
         <li><a href="/accounts/login">Login</a></li>
         <li><a href="/accounts/register">Register</a></li>
@@ -45,11 +43,6 @@
   </div>
 </nav>
     <div class="content container">
-      {% if user.is_authenticated %}
-        <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
-      {% else %}
-        <p>Welcome, new user. Please log in.</p>
-      {% endif %}
         <div class="row">
         {% if messages %}
 <ul class="messages">

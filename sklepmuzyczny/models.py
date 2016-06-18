@@ -13,7 +13,7 @@ class Cart(models.Model):
         for cartentry in cart.cartentry_set.all():
             if cartentry.count > cartentry.disc.available_count:
                 return False
-            sum_price+= cartentry.count * cartentry.disc.price
+            cart.sum_price+= cartentry.count * cartentry.disc.price
         for cartentry in cart.cartentry_set.all():
             disc = cartentry.disc
             disc.available_count-=cartentry.count
@@ -71,3 +71,6 @@ class Order(models.Model):
     sum_price = models.FloatField(default=0)
     created_date = models.DateTimeField(
         default=timezone.now)
+
+    def __str__(self):
+        return self.cart.__str__() + "  " + str(self.created_date)

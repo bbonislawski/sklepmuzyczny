@@ -2,15 +2,13 @@
 
 {% block content %}
 
-<h2>Show Page</h2>
-<h3>Detailed info about disc</h3>            
-<p>Title: {{ disc.title}}</p>
-<p>Author: {{ disc.author}}</p>
-<p>Genre: {{ disc.genre}}</p>
-<p>Price: {{ disc.price}}</p>
-<p>Discs Available: {{ disc.available_count}} </p>
+<h2>{{ disc.title}}</h2>
+<p>Artysta: {{ disc.author}}</p>
+<p>Gatunek: {{ disc.genre}}</p>
+<p>Cena: {{ disc.price}}</p>
+<p>Ilosc dostepnych plyt: {{ disc.available_count}} </p>
  <form action={% url 'disc-add' disc.id %} method='post'>{% csrf_token %}
-<p><button class="btn btn-primary">Add to cart</button></p>
+<p><button class="btn btn-primary">Dodaj do koszyka</button></p>
 </form>
 
 {% endblock %}

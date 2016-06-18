@@ -1,16 +1,16 @@
 {% extends 'base.html' %} 
 
 {% block content %}
-<h2>Shoop</h2>
-<p>CDs you can buy!</p>            
+<h2>Oferta</h2>
+<p>Plyty dostepne w naszym sklepie</p>            
 <table class="table table-striped">
 <thead>
   <tr>
-    <th>Title</th>
-    <th>Author</th>
-    <th>Genre</th>
-    <th>Price</th>
-    <th>Discs Available</th>
+    <th>Tytul</th>
+    <th>Artysta</th>
+    <th>Gatunek</th>
+    <th>Cena</th>
+    <th>Ilosc dostepnych plyt</th>
     <th></th>
   </tr>
 </thead>
@@ -24,7 +24,7 @@
 			<td>{{ disc.price}}</td>
 			<td>{{ disc.available_count}}</td>
 
-			<td> <a href={% url 'disc-detail' disc.id %} class="btn btn-primary" role="button">Show Details</a> </td>
+			<td> <a href={% url 'disc-detail' disc.id %} class="btn btn-primary" role="button">Szczegoly</a> </td>
 		</tr>
 	{% endfor %}
 
